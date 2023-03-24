@@ -1,0 +1,86 @@
+﻿@using bitirmeSonProje.Models
+
+
+@{
+    ViewData["Title"] = "AnaSayfa";
+    Layout = "~/Views/Shared/TemplateLayout.cshtml";
+    var sonDuyurular = (IEnumerable<bitirmeSonProje.Models.Duyuru>)ViewBag.duyurular;
+    var kisiler = (IEnumerable<bitirmeSonProje.Models.Kisi>)ViewBag.kisiler;
+}}
+
+
+
+
+
+<div class="swiper" style="margin: auto; margin-left: 6vw;">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+        <!-- Slides -->
+        @*<div class="swiper-slide" style="margin: auto; height: 650px;"><img src="./images/bg.jpg" style="object-position: center; object-fit: contain; width: 100%; height: 100%;" /></div>*@
+        @foreach (var item in kisiler)
+	{
+        <div class="swiper-slide"><img src="@item.ResimYolu" style="object-position: center; object-fit: contain; width: 100%; height: 100%;" /></div>
+	}
+        
+        @*<div class="swiper-slide"><img src="./images/logo-icon.png" style="object-position: center; object-fit: contain; width: 100%; height: 100%;" /></div>*@
+        ...
+    </div>
+
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+</div>
+<script type="module">
+    import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.esm.browser.min.js'
+
+    const swiper = new Swiper('.swiper', {
+        // Optional parameters
+        direction: 'horizontal',
+        loop: true,
+
+        // If we need pagination
+        pagination: {
+            el: '.swiper-pagination',
+        },
+
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+        // And if we need scrollbar
+        scrollbar: {
+            el: '.swiper-scrollbar',
+        },
+    });
+</script>
+<div class="rightcontent w-col w-col-6 w-col-stack">
+    <div data-w-id="3fd5aeb3-22da-ed60-7286-0d11f16597d3" style="opacity:0" class="content">
+        <div class="swiper" style="margin: auto; margin-left: 6vw;">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+                <!-- Slides -->
+                @*<div class="swiper-slide" style="margin: auto; height: 650px;"><img src="./images/bg.jpg" style="object-position: center; object-fit: contain; width: 100%; height: 100%;" /></div>*@
+                @foreach (var item in sonDuyurular)
+                {
+                    
+                    <div class="swiper-slide">
+                        <h4>@item.DuyuruAdi</h4>
+                        <h4>@item.Aciklama</h4>
+                    </div>
+                        }
+                        @*<div class="swiper-slide">  <a href="#" style="object-position: center; object-fit: contain; width: 100%; height: 100%;">Email </a></div>*@
+                        ...
+                    </div>
+
+            <!-- If we need navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+
+        <div class="credit">
+            ©2020 Your Name - <a href="https://onepagelove.com/split" target="_blank" class="credit-links">Split Template</a> by <a href="https://onepagelove.com" target="_blank" class="credit-links">One Page Love</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿@model bitirmeSonProje.Models.DuyuruTuru
+
+@{
+    ViewData["Title"] = "DuyuruEkle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>DUYURU EKLE</strong>
+            </div>
+            <div class="card-body card-block">
+                <form asp-controller="Admin" asp-action="DuyuruEkle" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <label><strong>DUYURU ADI</strong></label>
+                    <input type="text" class="form-control" name="DuyuruAdi" />
+                    <br />
+
+                    <br />
+                    <label><strong>AÇIKLAMA</strong></label>
+                    <input type="text" class="form-control" name="Aciklama" /><br />
+                    <label><strong>DUYURU ID</strong></label>
+                    <input type="text" class="form-control" name="Id" /><br />
+                    <br />
+
+                    <br />
+                    <label><strong>RESMİ</strong></label><br />
+                    <input type="file" name="ResimYolu" class="form-control" />
+                    <br />
+                    <br />
+                    <label><strong>KİŞİ ID</strong></label><br />
+                    <input type="text" name="KisiId" class="form-control" />
+                    <br />
+                    <button class="btn btn-primary btn-sm">
+                        <i class="fa fa-dot-circle-o"></i>DUYURU EKLE
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

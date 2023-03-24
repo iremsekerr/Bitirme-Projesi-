@@ -1,0 +1,53 @@
+﻿@using bitirmeSonProje.Models
+@model List<Duyuru>
+@{
+    ViewData["Title"] = "DuyuruList";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <!-- DATA TABLE -->
+        <h3 class="title-5 m-b-35"> <strong>DUYURULAR</strong></h3>
+    </div>
+
+    <div class="table-responsive table-responsive-data2">
+        <table class="table table-data2">
+            <thead>
+                <tr>
+
+                    <th><strong>DUYURU ID</strong></th>
+                    <th><strong>DUYURU ADI</strong></th>
+                    <th><strong>KİŞİ ID</strong></th>
+                    <th><strong>RESMİ </strong></th>
+                    <th><strong>AÇIKLAMA </strong></th>
+
+</thead>
+            <tbody>
+                @foreach (var x in Model)
+                {
+                <tr class="tr-shadow">
+                    <td>@x.Id</td>
+                    <td>@x.DuyuruAdi</td>
+                    <td>@x.KisiId</td>
+                    <td><img src="@x.ResimYolu" alt="Alternate Text" width="100px" height="90px" /></td>
+                    <td>@x.Aciklama</td>
+
+
+                    <td>
+                        <div class="table-data-feature">
+                            <a href="/Admin/DuyuruSil/@x.Id">
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <i class="zmdi zmdi-delete"></i>
+                                </button>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <!-- END DATA TABLE -->
+</div>

@@ -1,0 +1,53 @@
+﻿@using bitirmeSonProje.Models
+@model List<OfisSaati>
+@{
+    ViewData["Title"] = "OfisSaatiList";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <!-- DATA TABLE -->
+        <h3 class="title-5 m-b-35"> <strong>OFİS SAATLERİ</strong></h3>
+    </div>
+
+    <div class="table-responsive table-responsive-data2">
+        <table class="table table-data2">
+            <thead>
+                <tr>
+
+                    <th><strong>MÜSAİTLİK DURUMU </strong></th>
+                    <th><strong>BAŞLANGIÇ SAATİ</strong></th>
+
+                    <th><strong>BİTİŞ SAATİ</strong></th>
+                    <th><strong>GÜNÜ </strong></th>
+
+            </thead>
+            <tbody>
+                @foreach (var x in Model)
+                {
+                    <tr class="tr-shadow">
+                        <td>@x.MusaitlikDurumu</td>
+                        <td>@x.OfisSaatiBaslangic</td>
+
+                        <td>@x.OfisSaatiBitis</td>
+                        <td>@x.OfisSaatiGun</td>
+
+
+                        <td>
+                            <div class="table-data-feature">
+                                <a href="/Admin/OfisSaatiSil/@x.MusaitlikDurumu">
+                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                        <i class="zmdi zmdi-delete"></i>
+                                    </button>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <!-- END DATA TABLE -->
+</div>
