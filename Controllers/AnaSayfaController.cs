@@ -10,28 +10,46 @@ namespace BitirmeSon.Controllers
     public class AnaSayfaController : Controller
     {
         dbContext dbContext = new dbContext();
-        public IActionResult AnaSayfa()
-        
+        public static int Id = 0;
+        [HttpGet]
+        public IActionResult AnaSayfa(int? id)
         {
-            var siteAyarlari = dbContext.SiteAyarlars.FirstOrDefault();
-            var kisiler = dbContext.Kisis.Where(x => x.Id == siteAyarlari.SecilenKisiId).ToList();
+            
+            var kisiler = dbContext.Kisis.ToList();
+            var dtos = new SliderDto();
             ViewBag.kisiler = kisiler;
-            ViewBag.duyurular = dbContext.Duyurus.Where(x => x.KisiId == kisiler.FirstOrDefault().Id).ToList();
+            var siteAyarlari = dbContext.SiteAyarlars.FirstOrDefault();
+            
+            if(id!=null)
+            {
+                Id = (int)id;
+            }
+            ViewBag.Ids = Id;
+            var dd = new List<SliderDto>();
+            foreach(var item in kisiler)
+            {
+                dtos = new SliderDto()
+                {
+                    KisiId = item.Id,
+                    Image = dbContext.Kisis.FirstOrDefault(k => k.Id == item.Id).ResimYolu,
+                    Duyurular = dbContext.Duyurus.Where(k => k.KisiId == item.Id).ToList(),
+                    DersProgramlari = dbContext.DersProgramis.Where(k => k.KisiId == item.Id).ToList(),
+                    OfisSaatleri = dbContext.OfisSaatis.Where(k => k.KisiId == item.Id).ToList()
+                };
+                dd.Add(dtos);
+            }
            
-
-            return View();
-
-        }
-
-        public IActionResult Getir(int id)
-        {
-
-            var modal = dbContext.Duyurus.Where(x => x.Id == id).ToList();
-
-            ViewBag.modal = modal;
-            return View(modal);
+            ViewBag.dtos = dd;
+            return View(dd);
 
         }
+
+        //public IActionResult Getir(int id)
+        //{
+        //    var modal = dbContext.Duyurus.Where(x => x.KisiId == id).ToList();
+        //    return Json(modal);
+
+        //}
 
     }
 }

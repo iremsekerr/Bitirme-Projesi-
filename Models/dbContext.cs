@@ -24,9 +24,6 @@ namespace bitirmeSonProje.Models
 
         {
             optionsBuilder.UseSqlServer("server=LAPTOP-T64G6UVJ; database=DuyuruEkrani; integrated security=true");
-
-
-
         }
     }
 }

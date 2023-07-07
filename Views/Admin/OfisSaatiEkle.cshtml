@@ -1,5 +1,56 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model bitirmeSonProje.Models.OfisSaati
+
 @{
+    ViewData["Title"] = "OfisSaatiEkle";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <strong>OFİS SAATİ EKLE</strong>
+            </div>
+            <div class="card-body card-block">
+                <form asp-controller="Admin" asp-action="OfisSaatiEkle" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <label><strong>OFİS SAATİ GÜNÜ</strong></label>
+                    <select class="select2 form-control form-control-lg" required name="OfisSaatiGun" asp-for="OfisSaatiGun" asp-items="@ViewBag.Days">
+                        <option value="">Gün Seçiniz</option>
+                    </select>
+                    <br />
+
+                    <br />
+                    <label><strong>BAŞLANGIÇ SAATİ</strong></label>
+                    @Html.EditorFor(model => model.OfisSaatiBaslangic, new { htmlAttributes = new { @class = "form-control input-medium" , @placeHolder="00:00", @required="true"}})
+                    @*<input type="text" class="form-control" required name="OfisSaatiBaslangic"  />*@<br />
+                    <label><strong>BİTİŞ SAATİ</strong></label>
+                    @Html.EditorFor(model => model.OfisSaatiBitis, new { htmlAttributes = new { @class = "form-control input-medium" , @placeHolder="00:00", @required="true"}})
+                    <br />
+                    <br />
+                    <label><strong>KİŞİ ID</strong></label><br />
+                    <select class="select2 kisiId form-control form-control-lg" required name="KisiId" asp-for="KisiId" asp-items="@ViewBag.Kisiler">
+                        <option value="">Kişi Seçiniz</option>
+                    </select>
+                    <br />
+                    <br />
+                    <label><strong>MÜSAİTLİK DURUMU</strong></label><br />
+                    @{
+                        var check = "checked";
+                        var value = true;
+                        if(Model != null && !Model.MusaitlikDurumu)
+                        {
+                            check = "";
+                            value = false;
+                        }
+                        }
+                    @Html.CheckBoxFor(model => model.MusaitlikDurumu, new { htmlAttributes = new { @class = "form-control input-large" }})
+                    
+                    <br />
+                    <button class="btn btn-primary btn-sm">
+                        <i class="fa fa-dot-circle-o"></i>OFİS SAATİ EKLE
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

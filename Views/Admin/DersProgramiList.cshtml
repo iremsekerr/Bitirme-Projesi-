@@ -23,29 +23,44 @@
                     <th><strong>DERS GÜNÜ</strong></th>
                     <th><strong>DERS ÖN KOŞULU</strong></th>
 
-</thead>
+            </thead>
             <tbody>
                 @foreach (var x in Model)
                 {
-                <tr class="tr-shadow">
-                    <td>@x.DersAdi</td>
-                    <td>@x.DersKod</td>
+                    <tr class="tr-shadow">
+                        <td>@x.DersAdi</td>
+                        <td>@x.DersKod</td>
 
-                    <td>@x.DersSaati</td>
-                    <td>@x.Gun</td>
-                    <td>@x.OnKosul</td>
+                        <td>@x.DersSaati</td>
+                        <td>@x.Gun</td>
+                        <td>@x.OnKosul</td>
+
+                        <td>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="table-data-feature">
+                                        <a href="/Admin/DersProgramiEkle/@x.Id">
+                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Update">
+                                                <i class="fa fa-pencil-square-o"></i>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="table-data-feature">
+                                        <a href="/Admin/DersProgramiSil/@x.Id">
+                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                <i class="zmdi zmdi-delete"></i>
+                                            </button>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
 
 
-                    <td>
-                        <div class="table-data-feature">
-                            <a href="/Admin/DuyuruSil/@x.DersKod">
-                                <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                    <i class="zmdi zmdi-delete"></i>
-                                </button>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
                 }
 
             </tbody>

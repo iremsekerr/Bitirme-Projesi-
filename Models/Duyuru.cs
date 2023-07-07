@@ -14,6 +14,7 @@ namespace bitirmeSonProje.Models
         public string DuyuruAdi { get; set; }
         public string ResimYolu { get; set; }
         public string Aciklama { get; set; }
+        [Required(ErrorMessage ="Bu alan boş bırakılamaz.")]
         public int KisiId { get; set; }
 
     }

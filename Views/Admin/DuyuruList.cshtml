@@ -4,6 +4,9 @@
     ViewData["Title"] = "DuyuruList";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
+@{
+    var kisiler= (List<SelectListItem>)ViewBag.kisiler;
+}
 
 <div class="row">
     <div class="col-md-6">
@@ -18,7 +21,7 @@
 
                     <th><strong>DUYURU ID</strong></th>
                     <th><strong>DUYURU ADI</strong></th>
-                    <th><strong>KİŞİ ID</strong></th>
+                    <th><strong>KİŞİ ADI</strong></th>
                     <th><strong>RESMİ </strong></th>
                     <th><strong>AÇIKLAMA </strong></th>
 
@@ -26,22 +29,38 @@
             <tbody>
                 @foreach (var x in Model)
                 {
-                <tr class="tr-shadow">
+                    var kisi = kisiler.FirstOrDefault(k => k.Value == x.KisiId.ToString()).Text;
+                    <tr class="tr-shadow">
                     <td>@x.Id</td>
                     <td>@x.DuyuruAdi</td>
-                    <td>@x.KisiId</td>
+                    <td>@kisi</td>
                     <td><img src="@x.ResimYolu" alt="Alternate Text" width="100px" height="90px" /></td>
                     <td>@x.Aciklama</td>
 
 
                     <td>
-                        <div class="table-data-feature">
-                            <a href="/Admin/DuyuruSil/@x.Id">
-                                <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                    <i class="zmdi zmdi-delete"></i>
-                                </button>
-                            </a>
-                        </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="table-data-feature">
+                                        <a href="/Admin/DuyuruEkle/@x.Id">
+                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Update">
+                                                <i class="fa fa-pencil-square-o"></i>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="table-data-feature">
+                                        <a href="/Admin/DuyuruSil/@x.Id">
+                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                <i class="zmdi zmdi-delete"></i>
+                                            </button>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+
                     </td>
                 </tr>
                 }

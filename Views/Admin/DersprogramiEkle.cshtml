@@ -12,24 +12,35 @@
                 <strong>DUYURU EKLE</strong>
             </div>
             <div class="card-body card-block">
-                <form asp-controller="Admin" asp-action="DuyuruEkle" method="post" enctype="multipart/form-data" class="form-horizontal">
-                    <label><strong>DUYURU ADI</strong></label>
-                    <input type="text" class="form-control" name="DuyuruAdi" />
+                <form asp-controller="Admin" asp-action="DersProgramiEkle" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <label><strong>DERS ADI</strong></label>
+                    @Html.EditorFor(model => model.DersAdi, new { htmlAttributes = new { @class = "form-control input-medium" }})
+                    @*<input type="text" class="form-control" name="DersAdi" />*@
+                    <br />
+                    <label><strong>DERS KODU</strong></label>
+                    @Html.EditorFor(model => model.DersKod, new { htmlAttributes = new { @class = "form-control input-medium" }})
+                    <br />
+                    <label><strong>DERS GÜNÜ</strong></label>
+                    <select class="select2 form-control form-control-lg" required name="Gun" asp-for="Gun" asp-items="@ViewBag.Days">
+                        <option value="">Gün Seçiniz</option>
+                    </select>
+                    <br />
+                    <label><strong>DERS SAATİ</strong></label>
+                    @Html.EditorFor(model => model.DersSaati, new { htmlAttributes = new { @class = "form-control input-medium" }})
                     <br />
 
+                    <label><strong>DERS ÖN KOŞUL</strong></label>
+                    @Html.EditorFor(model => model.OnKosul, new { htmlAttributes = new { @class = "form-control input-medium" }})
                     <br />
-                    <label><strong>AÇIKLAMA</strong></label>
-                    <input type="text" class="form-control" name="Aciklama" /><br />
-                    <label><strong>DUYURU ID</strong></label>
-                    <input type="text" class="form-control" name="Id" /><br />
                     <br />
-
+                    <label><strong>KİŞİ ID</strong></label><br />
+                    <select class="select2 kisiId form-control form-control-lg" required name="KisiId" asp-for="KisiId" asp-items="@ViewBag.Kisiler">
+                        <option value="">Kişi Seçiniz</option>
+                    </select>
                     <br />
-                    <label><strong>RESMİ</strong></label><br />
-                    <input type="file" name="ResimYolu" class="form-control" />
                     <br />
                     <button class="btn btn-primary btn-sm">
-                        <i class="fa fa-dot-circle-o"></i>DUYURU EKLE
+                        <i class="fa fa-dot-circle-o"></i>DERS EKLE
                     </button>
                 </form>
             </div>

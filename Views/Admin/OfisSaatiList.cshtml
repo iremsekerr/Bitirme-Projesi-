@@ -4,6 +4,9 @@
     ViewData["Title"] = "OfisSaatiList";
     Layout = "~/Views/Shared/AdminLayout.cshtml";
 }
+@{
+    var kisiler = (IEnumerable<SelectListItem>)ViewBag.Kisiler;
+}
 
 <div class="row">
     <div class="col-md-6">
@@ -16,6 +19,7 @@
             <thead>
                 <tr>
 
+                    <th><strong>KİŞİ İSMİ </strong></th>
                     <th><strong>MÜSAİTLİK DURUMU </strong></th>
                     <th><strong>BAŞLANGIÇ SAATİ</strong></th>
 
@@ -27,20 +31,32 @@
                 @foreach (var x in Model)
                 {
                     <tr class="tr-shadow">
+                        <td>@kisiler.FirstOrDefault(k => k.Value == x.KisiId.ToString()).Text</td>
                         <td>@x.MusaitlikDurumu</td>
                         <td>@x.OfisSaatiBaslangic</td>
-
                         <td>@x.OfisSaatiBitis</td>
                         <td>@x.OfisSaatiGun</td>
-
-
                         <td>
-                            <div class="table-data-feature">
-                                <a href="/Admin/OfisSaatiSil/@x.MusaitlikDurumu">
-                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                        <i class="zmdi zmdi-delete"></i>
-                                    </button>
-                                </a>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="table-data-feature">
+                                        <a href="/Admin/OfisSaatiEkle/@x.Id">
+                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Update">
+                                                <i class="fa fa-pencil-square-o"></i>
+                                            </button>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="table-data-feature">
+                                        <a href="/Admin/OfisSaatiSil/@x.Id">
+                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                <i class="zmdi zmdi-delete"></i>
+                                            </button>
+                                        </a>
+                                    </div>
+
+                                </div>
                             </div>
                         </td>
                     </tr>
